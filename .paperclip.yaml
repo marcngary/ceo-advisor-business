@@ -1,0 +1,34 @@
+schema: paperclip/v1
+schemaVersion: 7
+company:
+  requireBoardApprovalForNewAgents: true
+agents:
+  ceo:
+    adapter:
+      type: claude_local
+    budgetMonthlyCents: 4000
+  copy-outbound:
+    adapter:
+      type: claude_local
+    budgetMonthlyCents: 2000
+  registro-emv:
+    adapter:
+      type: claude_local
+    budgetMonthlyCents: 1000
+  research-cuentas:
+    adapter:
+      type: claude_local
+    budgetMonthlyCents: 2000
+routines:
+  revision-semanal-ceo:
+    triggers:
+      - kind: schedule
+        label: Lunes 8:47
+        cronExpression: "47 8 * * 1"
+        timezone: Europe/Madrid
+  cierre-diario-registro:
+    triggers:
+      - kind: schedule
+        label: Laborables 19:43
+        cronExpression: "43 19 * * 1-5"
+        timezone: Europe/Madrid
